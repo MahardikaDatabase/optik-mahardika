@@ -13,10 +13,10 @@ const LoginPage = () => {
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [superKeyInput, setSuperKeyInput] = useState('');
   const [revealedCreds, setRevealedCreds] = useState(null);
-  
+
   const navigate = useNavigate();
   const { login, adminCredentials } = useContext(AppDataContext);
-  
+
   const handleForgotSubmit = (e) => {
     e.preventDefault();
     if (superKeyInput === 'RyanKerenSekali') {
@@ -46,10 +46,8 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="login-header">
-        <div className="login-logo-circle">
-          <a href='http://localhost:5173/#beranda'>
-            <Eye className="login-logo-icon" size={24} />
-          </a>
+        <div className="login-logo-circle" onClick={() => navigate('/')} style={{ cursor: 'pointer' }} title="Kembali ke Beranda">
+          <Eye className="login-logo-icon" size={24} />
         </div>
         <p className="login-subtitle">INTERNAL ADMINISTRATION</p>
         <h1 className="login-title">Optik Mahardika</h1>
@@ -76,9 +74,9 @@ const LoginPage = () => {
           <div className="form-group">
             <div className="label-wrapper">
               <label>SECURITY KEY</label>
-              <button 
-                type="button" 
-                className="forgot-link" 
+              <button
+                type="button"
+                className="forgot-link"
                 onClick={() => setShowForgotModal(true)}
                 style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
@@ -134,7 +132,7 @@ const LoginPage = () => {
           <div className="modal-card">
             <h3>Forgot Credentials?</h3>
             <p>Please enter the <strong>Superkey</strong> to see your current ID and Key.</p>
-            
+
             {!revealedCreds ? (
               <form onSubmit={handleForgotSubmit}>
                 <div className="form-group">
