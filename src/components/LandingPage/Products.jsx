@@ -13,6 +13,17 @@ import 'swiper/css/pagination';
 const Products = () => {
   const { products } = useContext(AppDataContext);
 
+  const randomProducts = React.useMemo(() => {
+    return [...products].sort(() => 0.5 - Math.random()).slice(0, 6);
+  }, [products]);
+
+  const formatPrice = (price) => {
+    if (!price) return '';
+    const numericPrice = price.toString().replace(/[^0-9]/g, '');
+    if (!numericPrice) return price;
+    return `Rp ${parseInt(numericPrice, 10).toLocaleString('id-ID').replace(/,/g, '.')}`;
+  };
+
   return (
     <section id="produk" className="products">
       <div className="container">
@@ -35,7 +46,7 @@ const Products = () => {
             }}
             className="products-swiper"
           >
-            {products.map((p, idx) => (
+            {randomProducts.map((p, idx) => (
               <SwiperSlide key={idx}>
                 <div className="product-card">
                   <div className="product-img-box">
@@ -44,7 +55,7 @@ const Products = () => {
                   </div>
                   <div className="product-info">
                     <h3>{p.name}</h3>
-                    <p className="product-price">{p.price}</p>
+                    <p className="product-price">{formatPrice(p.price)}</p>
                   </div>
                 </div>
               </SwiperSlide>
