@@ -1,0 +1,96 @@
+.about {
+  background-color: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-media {
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 400px;
+  display: block;
+}
+
+.card-title {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.btn-dark {
+  background-color: var(--navy-dark);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 50px;
+  max-width: fit-content;
+  font-weight: 600;
+}
+
+.sup-text {
+  color: var(--primary-orange);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin: 16px 0 24px;
+  color: var(--navy-dark);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.point-item {
+  display: flex;
+  gap: 16px;
+}
+
+.check-icon {
+  background-color: #8D3500;
+  color: var(--white);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.point-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.point-text p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 991px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
