@@ -9,6 +9,7 @@ const CatalogueGrid = ({ activeCategory, searchQuery }) => {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [sortOrder, setSortOrder] = useState(''); // 'asc' or 'desc'
   const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -159,7 +160,12 @@ const CatalogueGrid = ({ activeCategory, searchQuery }) => {
         {currentItems.length > 0 ? currentItems.map((product) => (
           <div key={product.id} className="product-card">
             <div className="product-image-container">
-              <img src={product.img} alt={product.name} />
+              <img 
+                src={product.img} 
+                alt={product.name} 
+                onClick={() => setSelectedImage(product.img)}
+                style={{ cursor: 'zoom-in' }}
+              />
               {product.tag && (
                 <span className="product-badge" style={{
                   backgroundColor: product.tag === 'New' ? '#ea580c' : '#475569'
@@ -219,6 +225,30 @@ const CatalogueGrid = ({ activeCategory, searchQuery }) => {
       <div className="pagination-text">
         Showing {currentItems.length} of {processedProducts.length} premium products
       </div>
+
+      {/* Lightbox / Image Popup Modal */}
+      {selectedImage && (
+        <div 
+          onClick={() => setSelectedImage(null)}
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, width: '100vw', height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: 9999,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'zoom-out'
+          }}
+        >
+          <img 
+            src={selectedImage} 
+            alt="Enlarged product" 
+            style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain', borderRadius: '8px' }} 
+            onClick={(e) => e.stopPropagation()} 
+          />
+        </div>
+      )}
     </main>
   );
 };

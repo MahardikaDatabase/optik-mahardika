@@ -386,6 +386,7 @@ const EditProduk = () => {
               <th>Category</th>
               <th>Brand</th>
               <th>Price</th>
+              <th>Detail</th>
               <th>Tag</th>
               <th>Actions</th>
             </tr>
@@ -400,6 +401,9 @@ const EditProduk = () => {
                 <td>{p.category || 'Eyeglasses'}</td>
                 <td>{p.brand || '-'}</td>
                 <td>{formatPriceDisplay(p.price) || '-'}</td>
+                <td style={{ maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={p.detail}>
+                  {p.detail || '-'}
+                </td>
                 <td>
                   {p.tag ? (
                     <span style={{ background: '#f97316', color: 'white', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem' }}>{p.tag}</span>
