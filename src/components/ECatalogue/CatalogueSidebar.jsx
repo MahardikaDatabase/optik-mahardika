@@ -28,6 +28,12 @@ const CatalogueSidebar = ({ activeCategory, setActiveCategory }) => {
           >
             <Star size={18} /> Sunglasses
           </li>
+          <li 
+            className={activeCategory === 'Lensa' ? 'active' : ''} 
+            onClick={() => setActiveCategory('Lensa')}
+          >
+            <Eye size={18} /> Lensa
+          </li>
         </ul>
       </div>
 

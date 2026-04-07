@@ -55,7 +55,12 @@ const Products = () => {
                   </div>
                   <div className="product-info">
                     <h3>{p.name}</h3>
-                    <p className="product-price">{formatPrice(p.price)}</p>
+                    {p.detail && (
+                      <p className="product-detail" style={{ fontSize: '0.85rem', color: '#64748b', margin: '0.5rem 0', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                        {p.detail}
+                      </p>
+                    )}
+                    <p className="product-price" style={{ marginTop: 'auto' }}>{formatPrice(p.price)}</p>
                   </div>
                 </div>
               </SwiperSlide>

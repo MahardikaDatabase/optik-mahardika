@@ -40,8 +40,9 @@ const CatalogueGrid = ({ activeCategory, searchQuery }) => {
     if (activeCategory === 'Sunglasses') {
       result = result.filter(p => p.category === 'Sunglasses');
     } else if (activeCategory === 'Eyeglasses') {
-      // Yang BUKAN Sunglasses (karena defaultnya kacamata biasa)
-      result = result.filter(p => !p.category || p.category !== 'Sunglasses');
+      result = result.filter(p => !p.category || p.category === 'Eyeglasses');
+    } else if (activeCategory === 'Lensa') {
+      result = result.filter(p => p.category === 'Lensa');
     }
 
     // Filter Search By Name
@@ -172,7 +173,10 @@ const CatalogueGrid = ({ activeCategory, searchQuery }) => {
               <div className="brand-rating">
                 <span className="brand-name">{product.brand}</span>
               </div>
-              <h3 className="product-name" style={{ flexGrow: 1, marginBottom: '1rem' }}>{product.name}</h3>
+              <h3 className="product-name" style={{ marginBottom: product.detail ? '0.5rem' : '1rem' }}>{product.name}</h3>
+              {product.detail && (
+                <p className="product-desc" style={{ flexGrow: 1 }}>{product.detail}</p>
+              )}
               <div className="price-action">
                 <span className="price">{formatPriceDisplay(product.price)}</span>
               </div>

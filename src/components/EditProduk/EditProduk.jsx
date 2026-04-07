@@ -6,7 +6,7 @@ import p1 from '../../assets/product1.png';
 const EditProduk = () => {
   const { products, addOrUpdateProduct, deleteProductLive } = useContext(AppDataContext);
   const [editingId, setEditingId] = useState(null);
-  const [formData, setFormData] = useState({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses' });
+  const [formData, setFormData] = useState({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses', detail: '' });
   const [currentPage, setCurrentPage] = useState(1);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const itemsPerPage = 5;
@@ -95,7 +95,8 @@ const EditProduk = () => {
       tag: product.tag || '',
       brand: product.brand || '',
       img: product.img || '',
-      category: product.category || 'Eyeglasses'
+      category: product.category || 'Eyeglasses',
+      detail: product.detail || ''
     });
     setIsFormOpen(true);
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -156,11 +157,12 @@ const EditProduk = () => {
         price: formData.price,
         tag: formData.tag,
         brand: formData.brand,
-        category: formData.category
+        category: formData.category,
+        detail: formData.detail
       }, false);
     }
     setEditingId(null);
-    setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses' });
+    setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses', detail: '' });
     setIsFormOpen(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
@@ -171,7 +173,7 @@ const EditProduk = () => {
 
   const handleCancel = () => {
     setEditingId(null);
-    setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses' });
+    setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses', detail: '' });
     setIsFormOpen(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
@@ -195,7 +197,7 @@ const EditProduk = () => {
           onClick={() => {
             if (isFormOpen && editingId) {
               setEditingId(null);
-              setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses' });
+              setFormData({ name: '', price: '', tag: '', brand: '', img: '', category: 'Eyeglasses', detail: '' });
             }
             setIsFormOpen(!isFormOpen);
           }}
@@ -251,7 +253,18 @@ const EditProduk = () => {
                 >
                   <option value="Eyeglasses">Eyeglasses</option>
                   <option value="Sunglasses">Sunglasses</option>
+                  <option value="Lensa">Lensa</option>
                 </select>
+              </div>
+
+              <div className="form-group-edit" style={{ flex: '1 1 100%' }}>
+                <label>Detail Produk</label>
+                <textarea
+                  placeholder="Detail lensa, bahan frame, dll..."
+                  value={formData.detail}
+                  onChange={e => setFormData({ ...formData, detail: e.target.value })}
+                  style={{ width: '100%', padding: '0.75rem', borderRadius: '6px', border: '1px solid #cbd5e1', resize: 'vertical', minHeight: '80px' }}
+                />
               </div>
               <div className="form-group-edit" style={{ flex: '1 1 45%' }}>
                 <label>Tag (Optional)</label>
