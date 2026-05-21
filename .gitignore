@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 testsprite_tests/
 
+
+# Local Netlify folder
+.netlify
