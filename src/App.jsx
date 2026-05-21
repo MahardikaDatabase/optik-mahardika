@@ -16,6 +16,8 @@ import EditProduk from './components/EditProduk/EditProduk';
 import EditPromo from './components/EditPromo/EditPromo';
 import EditSettingAdmin from './components/EditSettingAdmin/EditSettingAdmin';
 import ECatalogue from './components/ECatalogue/ECatalogue';
+import LuckyWheelPage from './components/LuckyWheel/LuckyWheelPage';
+import LuckyWheelAdmin from './components/LuckyWheel/LuckyWheelAdmin';
 import { AppDataContext } from './context/AppDataContext';
 
 const LandingPage = () => (
@@ -72,6 +74,12 @@ function App() {
           <ECatalogue />
         </GuestRoute>
       } />
+
+      <Route path="/lucky-wheel" element={
+        <GuestRoute>
+          <LuckyWheelPage />
+        </GuestRoute>
+      } />
       
       <Route path="/admin" element={
         <ProtectedRoute>
@@ -81,6 +89,7 @@ function App() {
         <Route index element={<DashboardOverview />} />
         <Route path="products" element={<EditProduk />} />
         <Route path="promo" element={<EditPromo />} />
+        <Route path="lucky-wheel" element={<LuckyWheelAdmin />} />
         <Route path="settings" element={<EditSettingAdmin />} />
       </Route>
     </Routes>

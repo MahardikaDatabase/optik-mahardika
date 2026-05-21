@@ -39,6 +39,7 @@ const Navbar = () => {
             <a href="#tentang-kami" className="nav-link" onClick={() => setIsMenuOpen(false)}>Tentang Kami</a>
             <a href="#layanan" className="nav-link nav-desktop-only" onClick={() => setIsMenuOpen(false)}>Layanan</a>
             <a href="#produk" className="nav-link" onClick={() => setIsMenuOpen(false)}>Produk</a>
+            <a href="/lucky-wheel" className="nav-link" onClick={() => setIsMenuOpen(false)}>Lucky Wheel</a>
             <a href="/login" className="nav-link" onClick={() => setIsMenuOpen(false)}>Masuk</a>
           </div>
         </div>

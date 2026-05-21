@@ -1,0 +1,517 @@
+/* ===========================
+   LUCKY WHEEL - PUBLIC PAGE
+   =========================== */
+.lucky-wheel-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #111D25 0%, #1A2B33 50%, #111D25 100%);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+}
+
+.lucky-wheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+  padding: 2rem;
+}
+
+/* Wheel Section */
+.wheel-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.wheel-wrapper {
+  position: relative;
+  width: 520px;
+  height: 520px;
+}
+
+.wheel-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px rgba(243, 112, 33, 0.2),
+    0 0 80px rgba(243, 112, 33, 0.08);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-right: 36px solid var(--primary-orange);
+  z-index: 10;
+  filter: drop-shadow(-3px 0 6px rgba(0,0,0,0.4));
+}
+
+.spin-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+  color: var(--white);
+  border: 4px solid var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 15px rgba(243, 112, 33, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+.spin-button:hover:not(:disabled) {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 6px 20px rgba(243, 112, 33, 0.7);
+}
+
+.spin-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Winner Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 29, 37, 0.88);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.winner-modal {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  color: var(--navy-dark);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+  transform: scale(0.85) translateY(30px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  border-top: 4px solid var(--primary-orange);
+}
+
+.modal-overlay.active .winner-modal {
+  transform: scale(1) translateY(0);
+}
+
+.winner-emoji {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.winner-title {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.winner-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+  margin-bottom: 2rem;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.winner-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-modal {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-modal:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-modal.primary {
+  background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+  color: var(--white);
+}
+
+.btn-modal.primary:hover {
+  box-shadow: 0 4px 12px rgba(243, 112, 33, 0.4);
+}
+
+.btn-modal.secondary {
+  background-color: #f1f5f9;
+  color: var(--text-dark);
+}
+
+.btn-modal.secondary:hover {
+  background-color: #e2e8f0;
+}
+
+/* ===========================
+   ADMIN - LUCKY WHEEL SETTINGS
+   =========================== */
+.lw-admin-container {
+  max-width: 900px;
+}
+
+.lw-admin-header {
+  margin-bottom: 2rem;
+}
+
+.lw-admin-header .overview-sup {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #d97706;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lw-admin-header h1 {
+  font-size: 2rem;
+  color: #0f172a;
+  margin-top: 0.25rem;
+}
+
+/* Stats Cards Row */
+.lw-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.lw-stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.lw-stat-card .stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.lw-stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.lw-stat-card .stat-value.highlight {
+  color: var(--primary-orange);
+}
+
+.lw-stat-card .stat-value.danger {
+  color: #dc2626;
+}
+
+.lw-stat-card .stat-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* Main Prize Config */
+.lw-config-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.lw-config-section h2 {
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lw-config-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.lw-config-item label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+.lw-config-item select,
+.lw-config-item input[type="number"] {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: border-color 0.2s;
+}
+
+.lw-config-item select:focus,
+.lw-config-item input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-orange);
+}
+
+.lw-config-item .config-help {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 0.35rem;
+}
+
+.lw-config-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn-lw-save {
+  background-color: #0f172a;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-lw-save:hover {
+  background-color: #1e293b;
+}
+
+.btn-lw-reset {
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-lw-reset:hover {
+  background-color: #fee2e2;
+}
+
+/* Prizes Table */
+.lw-prizes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lw-prizes-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.lw-prizes-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.lw-prizes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.prize-color-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.prize-main-badge {
+  display: inline-block;
+  background-color: #fef3c7;
+  color: #b45309;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prize-input-inline {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.prize-input-inline:focus {
+  outline: none;
+  border-color: var(--primary-orange);
+}
+
+.btn-add-prize {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.btn-add-prize:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.btn-delete-prize {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.btn-delete-prize:hover {
+  color: #ef4444;
+}
+
+/* Toast */
+.lw-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #0f172a;
+  color: white;
+  padding: 0.85rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 3000;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wheel-wrapper {
+    width: 340px;
+    height: 340px;
+  }
+
+  .spin-button {
+    width: 70px;
+    height: 70px;
+    font-size: 0.85rem;
+  }
+
+  .winner-name {
+    font-size: 2rem;
+  }
+
+  .lw-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lw-config-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .wheel-wrapper {
+    width: 280px;
+    height: 280px;
+  }
+
+  .lucky-wheel-container {
+    padding: 1rem;
+  }
+}

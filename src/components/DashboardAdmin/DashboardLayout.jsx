@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { NavLink, Outlet, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Glasses, Megaphone, Tags, Settings, Bell, Search, Eye, LogOut } from 'lucide-react';
+import { LayoutDashboard, Glasses, Megaphone, Tags, Settings, Bell, Search, Eye, LogOut, Target } from 'lucide-react';
 import { AppDataContext } from '../../context/AppDataContext';
 import './Dashboard.css'; // Shared CSS for dashboard
 
@@ -36,6 +36,11 @@ const DashboardLayout = () => {
           <NavLink to="/admin/promo" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
             <Megaphone size={20} />
             <span>PROMOTIONS</span>
+          </NavLink>
+
+          <NavLink to="/admin/lucky-wheel" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <Target size={20} />
+            <span>LUCKY WHEEL</span>
           </NavLink>
 
           <NavLink to="/admin/settings" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>

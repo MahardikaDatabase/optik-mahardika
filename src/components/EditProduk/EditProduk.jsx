@@ -192,7 +192,7 @@ const EditProduk = () => {
 
       {/* Accordion / Collapsible Form */}
       <div className="edit-container" style={{ marginBottom: '2rem' }}>
-        <div 
+        <div
           style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', userSelect: 'none' }}
           onClick={() => {
             if (isFormOpen && editingId) {
@@ -316,9 +316,9 @@ const EditProduk = () => {
       <div className="edit-container" style={{ padding: '0', overflow: 'visible' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', flexWrap: 'wrap', gap: '15px' }}>
           <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#334155' }}>Manage Inventory</h3>
-          
+
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }} className="filter-actions">
-            
+
             {/* Search Bar */}
             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
               <Search size={16} color="#64748b" style={{ position: 'absolute', left: '10px' }} />
@@ -333,8 +333,8 @@ const EditProduk = () => {
 
             {/* Dropdown Filter */}
             <div style={{ position: 'relative' }}>
-              <button 
-                className="btn-filter" 
+              <button
+                className="btn-filter"
                 style={{ padding: '6px 12px', border: '1px solid #e2e8f0', background: 'white', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
                 onClick={() => { setShowFilterDropdown(!showFilterDropdown); setShowSortDropdown(false); }}
               >
@@ -346,8 +346,8 @@ const EditProduk = () => {
                     Semua Brand
                   </button>
                   {uniqueBrands.map(brand => (
-                    <button 
-                      key={brand} 
+                    <button
+                      key={brand}
                       style={{ ...dropdownItemStyle, background: filterBrand === brand ? '#f8fafc' : 'white', fontWeight: filterBrand === brand ? 'bold' : 'normal' }}
                       onClick={() => { setFilterBrand(brand); setShowFilterDropdown(false); setCurrentPage(1); }}
                     >
@@ -360,8 +360,8 @@ const EditProduk = () => {
 
             {/* Dropdown Sort */}
             <div style={{ position: 'relative' }}>
-              <button 
-                className="btn-filter" 
+              <button
+                className="btn-filter"
                 style={{ padding: '6px 12px', border: '1px solid #e2e8f0', background: 'white', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}
                 onClick={() => { setShowSortDropdown(!showSortDropdown); setShowFilterDropdown(false); }}
               >
@@ -417,12 +417,12 @@ const EditProduk = () => {
             ))}
           </tbody>
         </table>
-        
+
         {/* Pagination Controls */}
         {totalPages > 1 && (
           <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', padding: '1rem', borderTop: '1px solid #e2e8f0', background: '#f8fafc' }}>
-            <button 
-              onClick={() => handlePageChange(currentPage - 1)} 
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
               style={{
                 padding: '6px 12px',
@@ -434,9 +434,9 @@ const EditProduk = () => {
             >
               Prev
             </button>
-            
+
             {[...Array(totalPages)].map((_, index) => (
-              <button 
+              <button
                 key={index + 1}
                 onClick={() => handlePageChange(index + 1)}
                 style={{
@@ -452,9 +452,9 @@ const EditProduk = () => {
                 {index + 1}
               </button>
             ))}
-            
-            <button 
-              onClick={() => handlePageChange(currentPage + 1)} 
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
               style={{
                 padding: '6px 12px',
